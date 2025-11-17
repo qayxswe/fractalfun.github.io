@@ -32,64 +32,7 @@ body {
     font-size: 10px;
 }
 
-#controls > div {
-    margin: 3px 0;
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-#controls > div input[type="range"] {
-    width: 100%;
-    margin-top: 2px;
-    height: 10px; /* kleiner Slider */
-    cursor: pointer;
-}
-
-#controls > div label {
-    font-size: 9px;
-    font-weight: bold;
-    color: #00ff00;
-}
-
-/* Buttons */
-#controls button {
-    width: 100%;
-    padding: 5px;
-    margin: 4px 0;
-    font-size: 11px;
-    font-weight: bold;
-    background: #222;
-    color: white;
-    border: 2px solid white;
-    cursor: pointer;
-}
-
-#controls button:hover {
-    background: #444;
-}
-
-#controls button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-/* Fokus auf Slider */
-#controls input[type="range"]:focus {
-    outline: 2px solid #00ff00;
-}
-
-/* ===========================
-   Collapse Sliders (E)
-=========================== */
-body.sliders-collapsed #controls > div {
-    display: none;
-}
-
-/* Buttons bleiben sichtbar */
-body.sliders-collapsed #controls button {
-    display: block;
-}
-
+/* Einklapp-Pfeil */
 #collapseButton {
     width: 22px;
     height: 22px;
@@ -104,12 +47,66 @@ body.sliders-collapsed #controls button {
     cursor: pointer;
 }
 
-body.light-mode #collapseButton {
-    color: black;
-}
-
 #collapseButton:hover {
     opacity: 0.7;
+}
+
+/* Slider-Container */
+#controls > div {
+    margin: 3px 0;
+    display: flex;
+    flex-direction: column-reverse; /* Label über Slider */
+}
+
+#controls > div input[type="range"] {
+    width: 100%;
+    margin-top: 2px;
+    height: 10px;
+    cursor: pointer;
+}
+
+#controls > div label {
+    font-size: 9px;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+/* Buttons im Panel */
+#controls button {
+    font-family: inherit;
+}
+
+#controls .action-button {
+    width: 100%;
+    padding: 5px;
+    margin: 4px 0;
+    font-size: 11px;
+    font-weight: bold;
+    background: #222;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+#controls .action-button:hover {
+    background: #444;
+}
+
+#controls .action-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Fokus auf Slider */
+#controls input[type="range"]:focus {
+    outline: 2px solid #00ff00;
+}
+
+/* ===========================
+   Collapse Sliders (E + Button)
+=========================== */
+body.sliders-collapsed #controls > div {
+    display: none; /* Slider überall ausblenden */
 }
 
 /* ===========================
@@ -128,7 +125,7 @@ body.light-mode #collapseButton {
 #canvas1,
 #canvas2 {
     position: absolute;
-    background: #000;
+    background: #000; /* Darkmode-Default */
     margin: 0;
     padding: 0;
     border: none;
@@ -195,7 +192,7 @@ body.light-mode #collapseButton {
     position: fixed;
     top: 40px;
     right: 8px;
-    width: 220px;
+    width: 260px;
     background: rgba(0,0,0,0.9);
     border: 2px solid #ffffff;
     padding: 8px;
@@ -252,14 +249,18 @@ body.light-mode #controls {
     color: #000;
 }
 
-body.light-mode #controls button {
+body.light-mode #controls .action-button {
     background: #eee;
     color: #000;
     border-color: #000;
 }
 
-body.light-mode #controls button:hover {
+body.light-mode #controls .action-button:hover {
     background: #ddd;
+}
+
+body.light-mode #collapseButton {
+    color: #000;
 }
 
 body.light-mode #controls > div label {
@@ -279,7 +280,7 @@ body.light-mode #successMessage {
     color: #000;
 }
 
-/* Light Mode Buttons */
+/* Help & Toggle Buttons */
 body.light-mode #helpButton,
 body.light-mode #themeToggle,
 body.light-mode #helpOverlay {
@@ -288,10 +289,10 @@ body.light-mode #helpOverlay {
     border-color: #000;
 }
 
-/* Canvas bleibt schwarz */
+/* Canvas-Hintergrund im Lightmode weiß */
 body.light-mode #canvas1,
 body.light-mode #canvas2 {
-    background: #000;
+    background: #ffffff;
 }
 
 /* ===========================
@@ -314,6 +315,34 @@ body.light-mode #canvas2 {
         overflow-y: auto;
     }
 
+    /* Wenn im Hochformat collapsed: nur Icon sichtbar, Rest unsichtbar */
+    body.sliders-collapsed #controls {
+        height: auto;
+        max-height: none;
+        background: transparent;
+        border: none;
+        bottom: 4px;
+    }
+
+    body.sliders-collapsed #controls > *:not(#collapseButton) {
+        display: none;
+    }
+
+    body.sliders-collapsed #collapseButton {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid white;
+        background: rgba(0,0,0,0.7);
+        margin: 4px;
+    }
+
+    body.light-mode.sliders-collapsed #collapseButton {
+        border-color: #000;
+        background: rgba(255,255,255,0.9);
+        color: #000;
+    }
+
     #helpButton {
         top: auto;
         bottom: 20vh;
@@ -330,4 +359,3 @@ body.light-mode #canvas2 {
         bottom: calc(20vh + 30px);
     }
 }
-
