@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraktale</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="controls">
+        <button id="randomizeButton">Randomisieren!</button>
+        <hr>
+        <div>
+            <input id="spread" type="range" min="-3.2" max="3.2" step="0.1" value="0.7">
+            <label for="spread">Streuung: 0.7</label>
+        </div>
+        <div>
+            <input id="sides" type="range" min="2" max="15" step="1" value="5">
+            <label for="sides">Seiten: 5</label>
+        </div>
+        <div>
+            <input id="levels" type="range" min="1" max="4" step="1" value="3">
+            <label for="levels">Tiefe: 3</label>
+        </div>
+        <div>
+            <input id="scale" type="range" min="0.1" max="0.9" step="0.1" value="0.5">
+            <label for="scale">Skalierung: 0.5</label>
+        </div>
+        <div>
+            <input id="lineWidth" type="range" min="5" max="30" step="5" value="15">
+            <label for="lineWidth">Linienbreite: 15</label>
+        </div>
+        <div>
+            <input id="lineLength" type="range" min="0.3" max="1" step="0.1" value="1">
+            <label for="lineLength">Länge: 1</label>
+        </div>
+        <div>
+            <input id="branching" type="range" min="1" max="5" step="1" value="1">
+            <label for="branching">Äste: 1</label>
+        </div>
+        <div>
+            <input id="hue" type="range" min="0" max="360" step="30" value="290">
+            <label for="hue">Farbton: 290</label>
+        </div>
+        <div>
+            <input id="nLevelBranches" type="range" min="0" max="2" step="1" value="1">
+            <label for="nLevelBranches">Verzweigung: 1</label>
+        </div>
+        <button id="resetButton">Zurücksetzen</button>
+    </div>
+
+    <div id="canvasContainer">
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+    </div>
+    
+    <div id="successMessage" style="display:none;">
+        ✓ Richtig!
+    </div>
+
+    <div id="debugInfo">
+        <strong>Rechter Canvas:</strong><br>
+        <div id="debugContent"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
