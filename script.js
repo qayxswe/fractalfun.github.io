@@ -515,6 +515,16 @@ window.addEventListener('load', function() {
         requestAnimationFrame(animate);
     }
 
+    function setSlidersCollapsed(state) {
+        slidersCollapsed = state;
+        document.body.classList.toggle('sliders-collapsed', slidersCollapsed);
+        collapseButton.textContent = slidersCollapsed ? '▾' : '▴';
+    }
+    collapseButton.addEventListener('click', () => {
+        setSlidersCollapsed(!slidersCollapsed);
+    });
+
+    
     // ==============================
     // Randomisieren & Reset
     // ==============================
@@ -587,3 +597,4 @@ window.addEventListener('load', function() {
 
     drawFractal();
 });
+
